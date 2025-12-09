@@ -73,17 +73,65 @@ Firecrawl API: Search + metadata extraction
 ReportLab: Dynamic PDF generation
 
 
-Project Architecture
-deep_research_app/
-├── main.py                        # Streamlit entry point
-├── controllers/
-│   └── research_controller.py     # Orchestrates entire research workflow
-├── services/
-│   └── agents_service.py          # CrewAI agent setup & task creation
-├── models/
-│   └── pdf_generator.py           # Generates PDF reports using ReportLab
-└── utils/
-    └── markdown_cleaner.py        # Cleans & preprocesses markdown output
+📦 Installation & Setup
+1️⃣ Clone the Repository
+git clone https://github.com/sarthakkar99/deep-research-app.git
+cd deep-research-app
+
+2️⃣ Create a virtual environment (optional but recommended)
+python3 -m venv venv
+source venv/bin/activate
+
+3️⃣ Install dependencies
+pip install -r requirements.txt
+
+4️⃣ Add your .env file
+
+Create a .env file in the project root:
+
+OPENAI_API_KEY=your-openai-key
+FIRECRAWL_KEY=your-firecrawl-key
 
 
+(Do NOT commit this file.)
+
+▶️ Running the App
+streamlit run main.py
+
+
+Streamlit will open at:
+http://localhost:8501
+
+🛠️ How It Works — Under the Hood
+🔍 Step 1 — Input
+
+User enters a topic + breadth + depth.
+
+🤖 Step 2 — Agents Activate
+
+Research Agent generates sub-queries and fetches relevant content via Firecrawl
+
+Summarizer Agent condenses findings into structured markdown
+
+Presenter Agent formats insights into a coherent narrative
+
+🧹 Step 3 — Markdown Cleaning
+
+Custom cleaning functions remove noise, artifacts, broken symbols, etc.
+
+📄 Step 4 — PDF Generation
+
+ReportLab compiles the cleaned content into a downloadable PDF.
+
+📘 Future Enhancements (Planned)
+
+Add vector search for storing/retrieving insights
+
+Add citation extraction
+
+Add multiple rendering themes for PDFs
+
+Add knowledge graph generation
+
+Enable multi-step conversational research
 
